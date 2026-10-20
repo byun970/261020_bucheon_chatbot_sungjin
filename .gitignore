@@ -1,5 +1,6 @@
 # Python 가상환경
 .conda/
+.venv/
 __pycache__/
 
 .env

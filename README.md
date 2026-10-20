@@ -22,14 +22,23 @@ Groq API를 활용한 챗봇 실습 프로젝트입니다. 콘솔 기본 예제�
 git clone https://github.com/byun970/261020_bucheon_chatbot_sungjin.git
 cd 261020_bucheon_chatbot_sungjin
 
-# 2. (권장) 가상환경 생성 및 활성화
+# 2. 파이썬 버전 확인 (3.9 미만이면 flask==3.1.0 설치 과정에서 오류 발생)
+python --version
+
+# 3. (권장) 가상환경 생성 및 활성화
 python -m venv .venv
 .venv\Scripts\activate   # Windows
 # source .venv/bin/activate   # macOS/Linux
 
-# 3. 필요 라이브러리 설치
+# conda 사용 시 (python --version이 3.9 미만으로 나온다면 버전을 직접 지정)
+# conda create --prefix ./.venv python=3.11 -y
+# conda activate ./.venv
+
+# 4. 필요 라이브러리 설치
 pip install -r requirements.txt
 ```
+
+> `python --version`이 3.9 미만이면 `pip install -r requirements.txt` 실행 시 `No matching distribution found for flask==3.1.0` 오류가 발생합니다. 이 경우 가상환경을 만들 때 Python 3.9 이상(`python3.11`, `py -3.11` 등)을 명시적으로 지정하세요.
 
 ## 환경 변수 설정 (.env)
 
@@ -61,8 +70,5 @@ python 261020_bucheon_chatbot_sungjin.py
 
 ## 주의사항
 
-- `.env`, `groq_api_key.txt` 파일은 절대 깃허브에 커밋/푸시하지 않습니다. (`.gitignore`에 이미 등록됨)
+- `.env`, `.venv/`, `groq_api_key.txt` 파일/폴더는 절대 깃허브에 커밋/푸시하지 않습니다. (`.gitignore`에 이미 등록됨)
 - API 키는 타인에게 공유하지 않습니다.
-
-- 코드 실행법 : .venv\Scripts\python.exe app.py
-- http://127.0.0.1:5000/ 접속
