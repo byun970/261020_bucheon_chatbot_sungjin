@@ -34,11 +34,17 @@ python -m venv .venv
 # conda create --prefix ./.venv python=3.11 -y
 # conda activate ./.venv
 
-# 4. 필요 라이브러리 설치
-pip install -r requirements.txt
+# 4. (중요) 가상환경이 실제로 활성화됐는지 확인
+# .venv 경로가 출력되어야 합니다. base(anaconda3) 경로가 나오면 활성화가 안 된 상태입니다.
+python -c "import sys; print(sys.executable)"
+
+# 5. 필요 라이브러리 설치 (pip 대신 python -m pip 사용 권장)
+python -m pip install -r requirements.txt
 ```
 
 > `python --version`이 3.9 미만이면 `pip install -r requirements.txt` 실행 시 `No matching distribution found for flask==3.1.0` 오류가 발생합니다. 이 경우 가상환경을 만들 때 Python 3.9 이상(`python3.11`, `py -3.11` 등)을 명시적으로 지정하세요.
+>
+> **conda 사용자 주의 (Windows)**: `conda activate ./.venv`를 실행해도 구버전 conda(특히 PowerShell에서 `conda init powershell`이 안 되어 있는 경우)는 PATH를 완전히 전환하지 못해, `pip` 명령이 새로 만든 가상환경이 아니라 base(anaconda3) 환경의 구버전 pip를 그대로 실행하는 경우가 있습니다. 이때는 `pip install`이 base 환경의 `site-packages`에 설치를 시도하면서 `flask==3.1.0`처럼 최신 버전을 찾지 못하는 오류가 날 수 있습니다. 위 4번 단계로 `sys.executable`이 `.venv` 경로인지 꼭 확인하고, `pip` 대신 `python -m pip install`을 사용하면 현재 활성화된 인터프리터의 pip가 정확히 실행됩니다.
 
 ## 환경 변수 설정 (.env)
 
