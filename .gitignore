@@ -1,0 +1,20 @@
+# Python 가상환경
+.conda/
+__pycache__/
+
+.env
+
+# YOLO 모델 가중치
+*.pt
+
+# 영상 파일
+*.mp4
+*.avi
+
+# YOLO 실행 결과
+runs/
+
+# 대용량 결과 이미지 (5MB 이상)
+_archive/output*.jpg
+
+groq_api_key.txt
